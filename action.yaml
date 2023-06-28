@@ -16,6 +16,27 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - name: Check inputs
+      id: check-inputs
+      shell: bash
+      run: |
+        ALL_SET=true
+        if [ -z "${{ inputs.CREDENTIALS }}" ]; then
+          echo "CREDENTIALS input is required"
+          ALL_SET=false
+        fi
+        if [ -z "${{ inputs.RESOURCE_GROUP }}" ]; then
+          echo "RESOURCE_GROUP input is required"
+          ALL_SET=false
+        fi
+        if [ -z "${{ inputs.CLUSTER }}" ]; then
+          echo "CLUSTER input is required"
+          ALL_SET=false
+        fi
+        if [ "$ALL_SET" = false ]; then
+          exit 1
+        fi
+
     - name: Azure login
       id: login
       uses: azure/login@v1.4.3
