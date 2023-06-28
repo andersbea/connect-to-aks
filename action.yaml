@@ -20,7 +20,7 @@ runs:
       id: login
       uses: azure/login@v1.4.3
       with:
-        creds: ${{ inputs.AZURE_CREDENTIALS }}
+        creds: ${{ inputs.CREDENTIALS }}
 
     - name: Set AKS context
       id: set-context
