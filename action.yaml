@@ -1,0 +1,38 @@
+name: "Connect to AKS"
+description: "Connect runner to a Azure Kubernetes Service cluster on the Azure Cloud Platform (see: https://learn.microsoft.com/en-us/azure/aks/kubernetes-action)"
+branding:
+  icon: "anchor"
+  color: "gray-dark"
+inputs:
+  CREDENTIALS:
+    description: "Credentials for the Azure service principal, preferably a service account specifically for use in Github Actions"
+    required: true
+  RESOURCE_GROUP:
+    description: "The resource group in which the cluster is located"
+    required: true
+  CLUSTER:
+    description: "The name of the cluster to which to connect"
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: Azure login
+      id: login
+      uses: azure/login@v1.4.3
+      with:
+        creds: ${{ inputs.AZURE_CREDENTIALS }}
+
+    - name: Set AKS context
+      id: set-context
+      uses: azure/aks-set-context@v3
+      with:
+        resource-group: "${{ inputs.RESOURCE_GROUP }}"
+        cluster-name: "${{ inputs.CLUSTER }}"
+
+    - name: Setup kubectl
+      id: install-kubectl
+      uses: azure/setup-kubectl@v3
+
+    - name: Setup helm
+      id: install-helm
+      uses: azure/setup-helm@v3
