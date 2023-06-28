@@ -1,5 +1,5 @@
 name: "Connect to AKS"
-description: "Connect runner to a Azure Kubernetes Service cluster on the Azure Cloud Platform (see: https://learn.microsoft.com/en-us/azure/aks/kubernetes-action)"
+description: "Connect runner to a Azure Kubernetes Service cluster on the Azure Cloud Platform"
 branding:
   icon: "anchor"
   color: "gray-dark"
