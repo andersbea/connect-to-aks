@@ -16,7 +16,7 @@ Simply call upon the action as so:
     CLUSTER: ${{ vars.AZURE_CLUSTER }}
 ```
 
-## Parametes
+## Parameters
 
 | Name | Description |
 | -------- | -------- | 
