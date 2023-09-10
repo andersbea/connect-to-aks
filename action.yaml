@@ -16,7 +16,7 @@ inputs:
   HELM_VERSION:
     description: "The version of helm to install (Example: 'v2' or 'v3')"
     required: false
-    default: "v3"
+    default: "v3.12.3"
 runs:
   using: "composite"
   steps:
