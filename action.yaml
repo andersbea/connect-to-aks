@@ -43,23 +43,23 @@ runs:
 
     - name: Azure login
       id: login
-      uses: azure/login@v1
+      uses: azure/login@v1.6.1
       with:
         creds: ${{ inputs.CREDENTIALS }}
 
     - name: Set AKS context
       id: set-context
-      uses: azure/aks-set-context@v3
+      uses: azure/aks-set-context@v3.2
       with:
         resource-group: "${{ inputs.RESOURCE_GROUP }}"
         cluster-name: "${{ inputs.CLUSTER }}"
 
     - name: Setup kubectl
       id: install-kubectl
-      uses: azure/setup-kubectl@v3
+      uses: azure/setup-kubectl@v3.2
 
     - name: Setup helm
       id: install-helm
-      uses: azure/setup-helm@v3
+      uses: azure/setup-helm@v3.5
       with: 
         version: ${{ inputs.HELM_VERSION }}
