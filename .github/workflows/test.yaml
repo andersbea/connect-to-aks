@@ -1,0 +1,36 @@
+name: Test
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test-with-helm:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run Action
+        uses: ./
+        env:
+          CREDENTIALS: ${{ secrets.CREDENTIALS }}
+          RESOURCE_GROUP: ${{ secrets.RESOURCE_GROUP }}
+          CLUSTER: ${{ secrets.CLUSTER }}
+          HELM_VERSION: v2
+
+  test-without-helm:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run Action
+        uses: ./
+        env:
+          CREDENTIALS: ${{ secrets.CREDENTIALS }}
+          RESOURCE_GROUP: ${{ secrets.RESOURCE_GROUP }}
+          CLUSTER: ${{ secrets.CLUSTER }}
